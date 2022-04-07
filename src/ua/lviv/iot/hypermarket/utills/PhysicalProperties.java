@@ -1,5 +1,7 @@
 package ua.lviv.iot.hypermarket.utills;
 
+import java.util.Objects;
+
 public class PhysicalProperties {
     private double weightInKilos;
     private double heightInMeters;
@@ -48,4 +50,33 @@ public class PhysicalProperties {
     public void setLengthInMeters(double lengthInMeters) {
         this.lengthInMeters = lengthInMeters;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(heightInMeters, lengthInMeters, weightInKilos, widthInMeters);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PhysicalProperties other = (PhysicalProperties) obj;
+		return Double.doubleToLongBits(heightInMeters) == Double.doubleToLongBits(other.heightInMeters)
+				&& Double.doubleToLongBits(lengthInMeters) == Double.doubleToLongBits(other.lengthInMeters)
+				&& Double.doubleToLongBits(weightInKilos) == Double.doubleToLongBits(other.weightInKilos)
+				&& Double.doubleToLongBits(widthInMeters) == Double.doubleToLongBits(other.widthInMeters);
+	}
+
+	@Override
+	public String toString() {
+		return "[weightInKilos=" + weightInKilos + ", heightInMeters=" + heightInMeters
+				+ ", widthInMeters=" + widthInMeters + ", lengthInMeters=" + lengthInMeters + "]";
+	}
+	
+	
+    
 }

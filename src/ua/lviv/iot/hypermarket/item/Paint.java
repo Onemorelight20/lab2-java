@@ -59,7 +59,7 @@ public class Paint extends Item{
 
     @Override
     public String toString() {
-        return "BlackPaint{" +
+        return "BlackPaint{" + super.toString() + ", " +
                 "typeOfPaint='" + typeOfPaint + '\'' +
                 ", maxArea=" + maxAreaInMeters +
                 '}';

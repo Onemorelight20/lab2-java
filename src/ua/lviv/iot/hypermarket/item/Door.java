@@ -54,7 +54,7 @@ public class Door extends Item {
 
     @Override
     public String toString() {
-        return "Door{" +
+        return "Door{" + super.toString() + ", " +
                 "typeOfWood='" + typeOfMaterial + '\'' +
                 ", hasGlass=" + hasGlass +
                 '}';

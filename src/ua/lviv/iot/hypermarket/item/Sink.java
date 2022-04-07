@@ -54,7 +54,7 @@ public class Sink extends Item{
 
     @Override
     public String toString() {
-        return "Sink{" +
+        return "Sink{" + super.toString() + ", " +
                 "color='" + color + '\'' +
                 ", material='" + material + '\'' +
                 '}';

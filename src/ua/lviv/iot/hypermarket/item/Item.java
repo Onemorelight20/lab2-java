@@ -1,5 +1,7 @@
 package ua.lviv.iot.hypermarket.item;
 
+import java.util.Objects;
+
 import ua.lviv.iot.hypermarket.utills.Category;
 import ua.lviv.iot.hypermarket.utills.PhysicalProperties;
 
@@ -48,4 +50,31 @@ public abstract class Item {
     public void setPhysicalProperties(PhysicalProperties physicalProperties) {
         this.physicalProperties = physicalProperties;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(category, name, physicalProperties, price);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Item other = (Item) obj;
+		return category == other.category && Objects.equals(name, other.name)
+				&& Objects.equals(physicalProperties, other.physicalProperties)
+				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price);
+	}
+
+	@Override
+	public String toString() {
+		return "item[name=" + name + ", category=" + 
+				category + ", price=" + price + ", physicalProperties=" + physicalProperties + "]";
+	}
+    
+    
 }
