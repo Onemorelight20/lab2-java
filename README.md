@@ -9,3 +9,6 @@
 За шириною
 
 Реалізація сортування має передбачати можливість сортувати як за спаданням, так і за зростанням
+
+Class diagram link:
+https://drive.google.com/file/d/1ddNoQtMdy8lsp25_85g3-NnJcNJ85BTH/view?usp=sharing
