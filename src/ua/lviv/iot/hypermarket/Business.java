@@ -1,20 +1,20 @@
 package ua.lviv.iot.hypermarket;
 
-import ua.lviv.iot.hypermarket.item.Paint;
+import java.util.ArrayList;
+import java.util.List;
+
 import ua.lviv.iot.hypermarket.item.Door;
 import ua.lviv.iot.hypermarket.item.Item;
+import ua.lviv.iot.hypermarket.item.Paint;
 import ua.lviv.iot.hypermarket.item.Sink;
 import ua.lviv.iot.hypermarket.utills.Category;
 import ua.lviv.iot.hypermarket.utills.PhysicalProperties;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Business {
-	
+
 	public static void main(String[] args) {
 		Business business = new Business();
-		business.doBusiness();
+		business.doBusiness();	
 	}
 	
 	public void doBusiness() {
