@@ -1,11 +1,11 @@
 package ua.lviv.iot.hypermarket;
 
-import ua.lviv.iot.hypermarket.item.Item;
-import ua.lviv.iot.hypermarket.utills.Category;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import ua.lviv.iot.hypermarket.item.Item;
+import ua.lviv.iot.hypermarket.utills.Category;
 
 public class ItemManager {
 	private Hypermarket hypermarket;
@@ -38,6 +38,7 @@ public class ItemManager {
 	};
 
 	public ItemManager(Hypermarket hypermarket) {
+		if(hypermarket == null) { throw new IllegalArgumentException(); }
 		this.hypermarket = hypermarket;
 	}
 
@@ -46,6 +47,7 @@ public class ItemManager {
 	}
 
 	public void setHypermarket(Hypermarket hypermarket) {
+		if(hypermarket == null) { throw new IllegalArgumentException(); }
 		this.hypermarket = hypermarket;
 	}
 
