@@ -1,5 +1,7 @@
 package ua.lviv.iot.hypermarket.item;
 
+import java.util.StringJoiner;
+
 import ua.lviv.iot.hypermarket.utills.Category;
 import ua.lviv.iot.hypermarket.utills.PhysicalProperties;
 
@@ -16,6 +18,21 @@ public class Door extends Item {
         super(name, category, price, physicalProperties);
         this.typeOfMaterial = typeOfMaterial;
         this.hasGlass = hasGlass;
+    }
+    
+    @Override
+    public String getHeaders() {
+    	String addition = ",typeOfMaterial,hasGlass";
+    	return super.getHeaders() + addition;
+    }
+    
+    @Override
+    public String toCSV() {
+    	StringJoiner joiner = new StringJoiner(",");
+    	return joiner.add(super.toCSV())
+    			.add(typeOfMaterial)
+    			.add(String.valueOf(hasGlass))
+    			.toString();
     }
 
     public String getTypeOfMaterial() {

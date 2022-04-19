@@ -2,6 +2,8 @@ package ua.lviv.iot.hypermarket.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.StringJoiner;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +23,26 @@ public class PaintTest {
 	@BeforeEach
 	void initPaint() {
 		paint = new Paint(paintName, category, price, physicalProperties, typeOfPaint, maxAreaInMeters);
+	}
+	
+	@Test
+	void getHeadersTest() {
+		String expected = "name,category,price,physicalProperties,typeOfPaint,maxAreaInMeters";
+		String actual = paint.getHeaders();
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	void toCSVTest() {
+		StringJoiner joiner = new StringJoiner(",");
+		String expected = joiner.add(paintName)
+				.add(category.name())
+				.add(String.valueOf(price))
+				.add(physicalProperties.toString())
+				.add(typeOfPaint).add(String.valueOf(maxAreaInMeters))
+				.toString();
+		String actual = paint.toCSV();
+		assertEquals(expected, actual);
 	}
 	
 	@Test

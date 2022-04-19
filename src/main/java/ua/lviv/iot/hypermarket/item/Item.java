@@ -1,6 +1,7 @@
 package ua.lviv.iot.hypermarket.item;
 
 import java.util.Objects;
+import java.util.StringJoiner;
 
 import ua.lviv.iot.hypermarket.utills.Category;
 import ua.lviv.iot.hypermarket.utills.PhysicalProperties;
@@ -11,12 +12,26 @@ public abstract class Item {
     private Category category;
     private double price;
     private PhysicalProperties physicalProperties;
+    private static final String ATTRIBUTE_NAMES_CSV = "name,category,price,physicalProperties";
 
     public Item(String name, Category category, double price, PhysicalProperties physicalProperties){
         this.name = name;
         this.category = category;
         this.price = price;
         this.physicalProperties = physicalProperties;
+    }
+    
+    public String getHeaders() {
+    	return ATTRIBUTE_NAMES_CSV;
+    }
+    
+    public String toCSV() {
+    	StringJoiner joiner = new StringJoiner(",");
+    	return joiner.add(name)
+    				 .add(category.name())
+    				 .add(String.valueOf(price))
+    				 .add(physicalProperties.toString())
+    				 .toString();
     }
 
     public String getName() {

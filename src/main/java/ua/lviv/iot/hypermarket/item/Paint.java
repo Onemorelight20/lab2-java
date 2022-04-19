@@ -4,6 +4,7 @@ import ua.lviv.iot.hypermarket.utills.Category;
 import ua.lviv.iot.hypermarket.utills.PhysicalProperties;
 
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Paint extends Item{
 
@@ -18,6 +19,21 @@ public class Paint extends Item{
         super(name, category, price, physicalProperties);
         this.typeOfPaint = typeOfPaint;
         this.maxAreaInMeters = maxAreaInMeters;
+    }
+    
+    @Override
+    public String getHeaders() {
+    	String addition = ",typeOfPaint,maxAreaInMeters";
+    	return super.getHeaders() + addition;
+    }
+    
+    @Override
+    public String toCSV() {
+    	StringJoiner joiner = new StringJoiner(",");
+    	return joiner.add(super.toCSV())
+    			.add(typeOfPaint)
+    			.add(String.valueOf(maxAreaInMeters))
+    			.toString();
     }
 
     public String getTypeOfPaint() {
