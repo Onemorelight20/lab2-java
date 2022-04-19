@@ -43,7 +43,7 @@ public class WriterTest {
 	@Test
 	void writingWithSpecificFileNameTest() throws IOException {
 		ItemWriter writer = new ItemWriter();
-		String fileName = "MyName.csv";
+		String fileName = "my-name.csv";
 		writer.setFileName(fileName);
 		List<Item> items = generateListOfItems();
 		writer.writeToFile(items);
