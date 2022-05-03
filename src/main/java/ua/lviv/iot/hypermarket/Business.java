@@ -13,7 +13,7 @@ import ua.lviv.iot.hypermarket.utills.ItemWriter;
 import ua.lviv.iot.hypermarket.utills.PhysicalProperties;
 
 public class Business {
-
+	
 	public static void main(String[] args) {
 		Business business = new Business();
 		//business.doBusiness();

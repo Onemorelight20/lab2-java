@@ -28,6 +28,7 @@ public class ItemWriter {
 				writer.write(item.toCSV());
 				writer.newLine();
 			}
+
 		}
 	}
 
