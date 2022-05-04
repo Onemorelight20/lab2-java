@@ -1,5 +1,7 @@
 package ua.lviv.iot.hypermarket.item;
 
+import java.util.StringJoiner;
+
 import ua.lviv.iot.hypermarket.utills.Category;
 import ua.lviv.iot.hypermarket.utills.PhysicalProperties;
 
@@ -16,6 +18,21 @@ public class Sink extends Item{
         super(name, category, price, physicalProperties);
         this.color = color;
         this.material = material;
+    }
+    
+    @Override
+    public String getHeaders() {
+    	String addition = ",color,material";
+    	return super.getHeaders() + addition;
+    }
+    
+    @Override
+    public String toCSV() {
+    	StringJoiner joiner = new StringJoiner(",");
+    	return joiner.add(super.toCSV())
+    			.add(color)
+    			.add(material)
+    			.toString();
     }
 
     public String getColor() {

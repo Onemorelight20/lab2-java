@@ -1,5 +1,6 @@
 package ua.lviv.iot.hypermarket;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,13 +9,24 @@ import ua.lviv.iot.hypermarket.item.Item;
 import ua.lviv.iot.hypermarket.item.Paint;
 import ua.lviv.iot.hypermarket.item.Sink;
 import ua.lviv.iot.hypermarket.utills.Category;
+import ua.lviv.iot.hypermarket.utills.ItemWriter;
 import ua.lviv.iot.hypermarket.utills.PhysicalProperties;
 
 public class Business {
-
+	
 	public static void main(String[] args) {
 		Business business = new Business();
-		business.doBusiness();	
+		//business.doBusiness();
+		business.doWritingBusiness();
+	}
+	
+	public void doWritingBusiness() {
+		ItemWriter writer = new ItemWriter();
+		try {
+			writer.writeToFile(generateListOfSinks());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void doBusiness() {
