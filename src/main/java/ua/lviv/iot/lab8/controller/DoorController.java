@@ -1,7 +1,6 @@
 package ua.lviv.iot.lab8.controller;
 
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import ua.lviv.iot.lab8.entity.Door;
@@ -18,9 +17,6 @@ public class DoorController {
     @Autowired
     private DoorService doorService;
 
-    public DoorController() {}
-
-
     @GET
     public Iterable<Door> getAll() {
         return doorService.getAll();
@@ -29,12 +25,9 @@ public class DoorController {
     @Path("{id}")
     @GET
     public Response getById(@PathParam("id") Long id) {
-        Door door = doorService.getById(id).orElse(null);
-        if (door == null) {
-            return Response.status(404).build();
-        } else {
-            return Response.status(200).entity(door).build();
-        }
+        return doorService.getById(id)
+                .map(door -> Response.status(200).entity(door).build())
+                .orElse(Response.status(404).build());
     }
 
     @POST
@@ -50,30 +43,25 @@ public class DoorController {
     @PUT
     @Path("/{id}")
     @Consumes("application/json")
-    @Produces("application/json")
     public Response updateDoor(@PathParam("id") Long id, @RequestBody Door door) {
-        Door temp = doorService.getById(id).orElse(null);
-        if(temp == null || door.hasNullValues()) {
-            return Response.status(404).build();
-        }
-        temp.setName(door.getName());
-        temp.setCategory(door.getCategory());
-        temp.setPrice(door.getPrice());
-        temp.setTypeOfMaterial(door.getTypeOfMaterial());
-        doorService.save(temp);
-        return Response.status(201).build();
+        return doorService.getById(id)
+                .map(temp -> {
+                    temp.setName(door.getName());
+                    temp.setCategory(door.getCategory());
+                    temp.setPrice(door.getPrice());
+                    temp.setTypeOfMaterial(door.getTypeOfMaterial());
+                    doorService.save(temp);
+                    return Response.status(200).build();
+                })
+                .orElse(Response.status(404).build());
     }
 
     @DELETE
     @Path("/{id}")
-    @Consumes("application/json")
     public Response deleteDoor(@PathParam("id") Long id) {
-        Door temp = doorService.getById(id).orElse(null);
-        if(temp == null) {
-            return Response.status(404).build();
-        }
-        doorService.delete(id);
-        return Response.status(201).build();
+        return doorService.getById(id)
+                .map(door -> Response.status(201).build())
+                .orElse(Response.status(404).build());
     }
 
 }
